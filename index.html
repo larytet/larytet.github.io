@@ -41,7 +41,7 @@
 				if(typeof(gCtchLogonInfo) !== 'undefined')
 				{	    	
 					var modified_redirect_url = "https://" + window.location.hostname +'/EUP/sso_login?orig_url=' + encodedOrigUrl + '&winUserId=' +gCtchLogonInfo.winUserId ;
-					console.log(modified_redirect_url);
+					console.log("Redirect to "+modified_redirect_url);
 					if (!empty(gCtchLogonInfo.orgName))
 					{
 						modified_redirect_url = modified_redirect_url.concat("&orgName=",gCtchLogonInfo.orgName);
