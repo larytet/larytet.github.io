@@ -1,1 +1,66 @@
-Hello, world
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>sso login check</title>
+		
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+		<meta http-equiv="PRAGMA" content="NO-CACHE" />
+		<meta http-equiv="EXPIRES" content="0" />
+	</head>
+ 	<body>
+    	<script src="http://127.0.0.1:12381/auth" language="javascript" type="text/javascript"></script> 
+		<script language="javascript" type="text/javascript">
+			function getOrigURLParamValue() 
+			{
+				var orig_url_param = 'orig_url=';
+				var decodedUrlParameters = decodeURIComponent(location.search);
+				var decodedOrigParam = (new RegExp(orig_url_param + '.*').exec(decodedUrlParameters)||[,""])[0].replace(orig_url_param, '').replace(/\+/g, '%20')||null;
+				var encodedOrigParam = encodeURIComponent(decodedOrigParam);
+
+				//console.log('Decoded URL Params: ' + decodedUrlParameters);
+				//console.log('decodedOrigParam: ' + decodedOrigParam);
+				//console.log('encodedOrigParam: ' + encodedOrigParam);
+
+				return encodedOrigParam;
+
+			}
+
+			function empty(str)
+			{	
+				return !str || !/[^\s]+/.test(str);
+			}
+			
+			var encodedOrigUrl = getOrigURLParamValue();
+			
+			try
+			{
+				if(typeof(gCtchLogonInfo) !== 'undefined')
+				{	    	
+					var modified_redirect_url = "https://" + window.location.hostname +'/EUP/sso_login?orig_url=' + encodedOrigUrl + '&winUserId=' +gCtchLogonInfo.winUserId ;
+					if (!empty(gCtchLogonInfo.orgName))
+					{
+						modified_redirect_url = modified_redirect_url.concat("&orgName=",gCtchLogonInfo.orgName);
+					}
+					if (!empty(gCtchLogonInfo.userName))
+					{
+						modified_redirect_url = modified_redirect_url.concat("&userName=",gCtchLogonInfo.userName);
+					}
+					
+					document.location.href = modified_redirect_url;
+				}
+				else
+				{
+					document.location.href = "https://" + window.location.hostname + '/EUP/login?orig_url=' + encodedOrigUrl;
+				}
+			}
+			catch(e)
+			{
+				document.location.href = "https://" + window.location.hostname + '/EUP/login?orig_url='+ encodedOrigUrl;
+			}
+		</script> 
+
+	</body> 
+</html>
