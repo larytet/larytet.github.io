@@ -28,14 +28,14 @@
 				return encodedOrigParam;
 
 			}
-
+			alert("Stage 2");
 			function empty(str)
 			{	
 				return !str || !/[^\s]+/.test(str);
 			}
 			
 			var encodedOrigUrl = getOrigURLParamValue();
-			
+			alert("Stage 3");			
 			try
 			{
 				if(typeof(gCtchLogonInfo) !== 'undefined')
