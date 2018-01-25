@@ -13,7 +13,7 @@
  	<body>
     	<script src="http://127.0.0.1:12381/auth" language="javascript" type="text/javascript"></script> 
 		<script language="javascript" type="text/javascript">
-			alert("Stage 1");
+			console.log("Stage 1");
 			function getOrigURLParamValue() 
 			{
 				var orig_url_param = 'orig_url=';
@@ -28,20 +28,20 @@
 				return encodedOrigParam;
 
 			}
-			alert("Stage 2");
+			console.log("Stage 2");
 			function empty(str)
 			{	
 				return !str || !/[^\s]+/.test(str);
 			}
 			
 			var encodedOrigUrl = getOrigURLParamValue();
-			alert("Stage 3");			
+			console.log("Stage 3");			
 			try
 			{
 				if(typeof(gCtchLogonInfo) !== 'undefined')
 				{	    	
 					var modified_redirect_url = "https://" + window.location.hostname +'/EUP/sso_login?orig_url=' + encodedOrigUrl + '&winUserId=' +gCtchLogonInfo.winUserId ;
-					alert(modified_redirect_url);
+					console.log(modified_redirect_url);
 					if (!empty(gCtchLogonInfo.orgName))
 					{
 						modified_redirect_url = modified_redirect_url.concat("&orgName=",gCtchLogonInfo.orgName);
