@@ -55,14 +55,14 @@
 				}
 				else
 				{
-					document.location.href = "https://" + window.location.hostname + '/EUP/login?orig_url=' + encodedOrigUrl;
+					//document.location.href = "https://" + window.location.hostname + '/EUP/login?orig_url=' + encodedOrigUrl;
 					alert("Type of gCtchLogonInfo is undefined");
 				}
 			}
 			catch(e)
 			{
-				document.location.href = "https://" + window.location.hostname + '/EUP/login?orig_url='+ encodedOrigUrl;
-				alert("Exception");
+				//document.location.href = "https://" + window.location.hostname + '/EUP/login?orig_url='+ encodedOrigUrl;
+				console.log("Exception");
 			}
 		</script> 
 
