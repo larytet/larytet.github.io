@@ -11,7 +11,7 @@
 		<meta http-equiv="EXPIRES" content="0" />
 	</head>
  	<body>
-    	<script src="http://127.0.0.1:12381/auth" language="javascript" type="text/javascript"></script> 
+    	<!-- <script src="http://127.0.0.1:12381/auth" language="javascript" type="text/javascript"></script>  -->
 		<script language="javascript" type="text/javascript">
 			console.log("Stage 1");
 			function getOrigURLParamValue() 
@@ -28,6 +28,23 @@
 				return encodedOrigParam;
 
 			}
+var getJSON = function(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status === 200) {
+	console.log("Got 200 from "+url);
+        //callback(null, xhr.response);
+      } else {
+	console.log("Got error from "+url);
+        //callback(status, xhr.response);
+      }
+    };
+    xhr.send();
+};
+getJSON("http://127.0.0.1:12381/auth", 0);
 			console.log("Stage 2");
 			function empty(str)
 			{	
