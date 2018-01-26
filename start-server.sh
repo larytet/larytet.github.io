@@ -7,5 +7,5 @@ else
 fi
 
 echo "Starting WEB server"
-python server.py
+python3 server.py
 
