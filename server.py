@@ -9,6 +9,10 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
         self.send_response(200)
         # Send headers
         self.send_header('Content-type','text/html')
+	self.send_header("Access-Control-Allow-Origin", "*")
+	self.send_header("Access-Control-Allow-Methods", "*")
+	self.send_header("Access-Control-Allow-Headers", "*")
+	self.send_header("Access-Control-Max-Age", "1")
         self.end_headers()
         # Send message back to client
         message = open("index.html", "r").read()
